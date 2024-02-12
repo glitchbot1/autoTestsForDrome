@@ -61,7 +61,6 @@ public class addToFavorites {
     @AfterClass
     public static void end()
     {
-        driver.close();
         driver.quit();
     }
 }
