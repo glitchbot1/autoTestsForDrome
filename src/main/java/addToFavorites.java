@@ -23,10 +23,7 @@ public class addToFavorites {
     public static void setup() {
         System.setProperty("webdriver.chrome.driver", "../autoTestsForDrome/webdriver/chromedriver.exe");
         driver = new ChromeDriver();
-
         driver.get("http://auto.drom.ru/ ");
-
-        //Открываем окно браузера на максимальную ширину
         driver.manage().window().maximize();
     }
 
@@ -38,7 +35,7 @@ public class addToFavorites {
         autolLoginButton.click();
 
         WebElement inputSign = driver.findElement(By.id("sign"));
-        ;
+
         inputSign.sendKeys("+79969383173");
 
         WebElement inputPassword = driver.findElement(By.id("password"));
