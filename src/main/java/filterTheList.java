@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 public class filterTheList {
     public static WebDriver driver;
-    private final By cardSale = By.xpath("//span[@data-ftid='bull_title']/..");
+    private final By carsSale = By.xpath("//span[@data-ftid='bull_title']/..");
     private final By nextPage = By.cssSelector("[data-ftid='component_pagination-item-next']");
 
     @BeforeClass
@@ -26,7 +26,8 @@ public class filterTheList {
         System.setProperty("webdriver.chrome.driver", "../autoTestsForDrome/webdriver/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://auto.drom.ru/");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);        //Открываем окно браузера на максимальную ширину
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //Открываем окно браузера на максимальную ширину
         driver.manage().window().maximize();
     }
 
@@ -34,7 +35,7 @@ public class filterTheList {
     public void filterList() {
         JavascriptExecutor scroll = (JavascriptExecutor) driver;
         scroll.executeScript("window.scrollBy(0,700)", "");
-        WebElement cardSale = driver.findElement(By.xpath("//span[@data-ftid='bull_title']/.."));
+        WebElement carsSale = driver.findElement(By.xpath("//span[@data-ftid='bull_title']/.."));
         //выбор марки
         WebElement inputListMark = driver.findElement(By.cssSelector("input[placeholder='Марка']"));
         inputListMark.click();
@@ -81,7 +82,7 @@ public class filterTheList {
     }
 
     public void CheckCarYear() {
-        List<WebElement> cars = driver.findElements((By) cardSale);
+        List<WebElement> cars = driver.findElements((By) carsSale);
         for (WebElement e : cars) {
             Assert.assertTrue("Ошибка! Год авто меньше заданного", Integer.parseInt(e.getText().split(", ")[1]) >= 2007);
         }
@@ -89,7 +90,7 @@ public class filterTheList {
     }
 
     public void checkSoldCars() {
-        List<WebElement> cars = driver.findElements(cardSale);
+        List<WebElement> cars = driver.findElements(carsSale);
         for (WebElement e : cars) {
             Assert.assertFalse(e.getCssValue("text-decoration").contains("line-through"));
         }
